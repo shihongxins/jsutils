@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# 默认生成的脚本命令
+# npm test
+
+# 修改成提交前自动运行 lint
+# pnpm run format && pnpm run lint
+
+# 修改成自动运行 lint-staged
+pnpm dlx lint-staged

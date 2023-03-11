@@ -1,0 +1,15 @@
+# /node_modules/* and /bower_components/* ignored by default
+
+# Ignore built files except build/index.js
+# build/*
+# !build/index.js
+
+# Ignore files in root
+dist
+test/**
+types/**
+src/assets
+src/lib*/third*
+*.min.*
+# Ignore files with .css, .sass, .scss, .less in src
+src/**/*.*ss

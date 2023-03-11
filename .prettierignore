@@ -1,0 +1,24 @@
+## OS
+.DS_Store
+.idea
+.vscode
+
+# Ignored suffix
+*.log
+*.svg
+*.png
+*.ico
+*.webp
+*ignore
+/*-lock*.*
+
+## Local
+.husky
+node_modules
+.gitattributes
+.editorConfig
+
+## Built-files
+*.min.*
+.cache
+dist
