@@ -14,27 +14,30 @@ jobs:
     steps:
       # 拉取代码
       - name: Checkout 🎉
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      # 如果开发时使用了 pnpm ，需要安装 pnpm ，后续命令都用 pnpm 代替 npm
+      # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-data
+      - name: Use pnpm
+        uses: pnpm/action-setup@v2
       # 安装 Node.js 指定版本
       - name: Use Node.js ${{ matrix.node-version }} 🖥️
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
-          cache-dependency-path: './package-lock.json'
+          cache: pnpm
       # 安装依赖
       - name: Install dependencies 🔧
-        run: npm install
+        run: pnpm install --frozen-lockfile
       # 检查代码
       - name: Check code 🔍
         run: |
-          npm run lint
-        # npm run test
+          pnpm run lint
+        # pnpm run test
       # 打包构建
       - name: Build 📦
-        run: npm run docs:build
+        run: pnpm run docs:build
       # 部署
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
@@ -51,8 +54,9 @@ jobs:
       - name: Publish 🆕
         # 如果有新 tag
         if: ${{contains(github.ref, 'refs/tags/')}}
+        # execute `cat ~/.npmrc` to get npm authToken
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-          npm run build
-          npm run build:types
-          npm publish --access public
+          pnpm run build
+          pnpm run build:types
+          pnpm publish --access public
