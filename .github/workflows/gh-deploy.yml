@@ -19,10 +19,10 @@ jobs:
           fetch-depth: 0
       # 如果开发时使用了 pnpm ，需要安装 pnpm ，后续命令都用 pnpm 代替 npm
       # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-data
-      - name: Use pnpm
+      - name: Use pnpm 🧑‍💻
         uses: pnpm/action-setup@v2
         with:
-          version: 6.32.9
+          version: 7.29.1
       # 安装 Node.js 指定版本
       - name: Use Node.js ${{ matrix.node-version }} 🖥️
         uses: actions/setup-node@v3
