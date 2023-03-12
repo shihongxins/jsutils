@@ -25,7 +25,7 @@ jobs:
           cache: npm
       # 安装依赖
       - name: Install dependencies 🔧
-        run: npm install
+        run: npm install --frozen-lockfile
       # 检查代码
       - name: Check code 🔍
         run: |
