@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as n,N as l}from"./app.9cc80aea.js";import"./chunks/theme.dc481ec2.js";const d=JSON.parse('{"title":"Installation","description":"","frontmatter":{"outline":"deep"},"headers":[],"relativePath":"start.md"}'),o={name:"start.md"},p=l("",4),t=[p];function e(c,r,i,D,y,F){return n(),a("div",null,t)}const u=s(o,[["render",e]]);export{d as __pageData,u as default};
