@@ -1,6 +1,6 @@
 {
-  "name": "@stones/jsutils",
-  "version": "0.0.2",
+  "name": "@shihongxins/jsutils",
+  "version": "0.0.3",
   "description": "Personal Javascript Utils Library.",
   "main": "lib/bundle.cjs.js",
   "module": "lib/bundle.esm.js",

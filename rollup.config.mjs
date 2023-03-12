@@ -7,7 +7,7 @@ import resolve from "@rollup/plugin-node-resolve";
 // 一段自定义的内容，以下内容会添加到打包结果中
 const footer = `
 if(typeof window !== 'undefined') {
-  window._STONES_JS_UTILS_VERSION_ = '${pkg.version}'
+  window._SHXS_JS_UTILS_VERSION_ = '${pkg.version}'
 }`;
 
 export default {
@@ -26,7 +26,7 @@ export default {
     {
       file: pkg.browser,
       format: "umd",
-      name: "StonesJSUtils",
+      name: "SHXsJSUtils",
       footer,
     },
   ],
