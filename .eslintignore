@@ -6,8 +6,8 @@
 
 # Ignore files in root
 dist
-test/**
-types/**
+types
+lib
 src/assets
 src/lib*/third*
 *.min.*

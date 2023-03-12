@@ -1,4 +1,4 @@
-import dayjs from "../node_modules/dayjs/index";
+import dayjs from "dayjs";
 
 type allowDateType = Date | string | number;
 

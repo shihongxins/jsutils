@@ -2,7 +2,10 @@
   "name": "@stones/utils",
   "version": "0.0.1",
   "description": "Stone's Personal Javascript Utils Library.",
-  "main": "src/index.ts",
+  "main": "lib/bundle.cjs.js",
+  "module": "lib/bundle.esm.js",
+  "browser": "lib/bundle.browser.js",
+  "types": "types/index.d.ts",
   "config": {
     "commitizen": {
       "path": "cz-git"
@@ -13,7 +16,10 @@
     "lint": "eslint ./src --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
-    "commit": "cz"
+    "commit": "cz",
+    "bulid": "rollup -c",
+    "build:types": "tsc",
+    "release": "release-it"
   },
   "keywords": [
     "Javascript",
@@ -24,6 +30,10 @@
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
     "@commitlint/config-conventional": "^17.4.4",
+    "@release-it/conventional-changelog": "^5.1.1",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^11.0.0",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
     "commitizen": "^4.3.0",
@@ -34,9 +44,11 @@
     "husky": "^8.0.0",
     "lint-staged": "^13.2.0",
     "prettier": "^2.8.4",
+    "release-it": "^15.8.0",
+    "rollup": "^3.19.1",
     "typescript": "^4.9.5"
   },
-  "peerDependencies": {
+  "dependencies": {
     "dayjs": "^1.11.7"
   }
 }
