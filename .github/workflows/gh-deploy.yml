@@ -21,6 +21,8 @@ jobs:
       # https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#caching-packages-data
       - name: Use pnpm
         uses: pnpm/action-setup@v2
+        with:
+          version: 6.32.9
       # 安装 Node.js 指定版本
       - name: Use Node.js ${{ matrix.node-version }} 🖥️
         uses: actions/setup-node@v3
