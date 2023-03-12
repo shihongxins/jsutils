@@ -1,0 +1,57 @@
+name: gh-deploy ⚙️
+on:
+  push:
+    branches:
+      - main
+  # 或者手动触发 https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/
+  workflow_dispatch: {}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      # 拉取代码
+      - name: Checkout 🎉
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      # 安装 Node.js 指定版本
+      - name: Use Node.js ${{ matrix.node-version }} 🖥️
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      # 安装依赖
+      - name: Install dependencies 🔧
+        run: npm install
+      # 检查代码
+      - name: Check code 🔍
+        run: |
+          npm run lint
+        # npm run test
+      # 打包构建
+      - name: Build 📦
+        run: npm run docs:build
+      # 部署
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          # 分支
+          branch: gh-pages
+          # 目录
+          folder: docs/.vitepress/dist
+          # 操作密钥
+          token: ${{ secrets.ACCESS_TOKEN }}
+          # 自动清理文件
+          clean: true
+      # 发布 npm
+      - name: Publish 🆕
+        # 如果有新 tag
+        if: ${{contains(github.ref, 'refs/tags/')}}
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          npm run build
+          npm run build:types
+          npm publish --access public
