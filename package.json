@@ -2,18 +2,20 @@
   "name": "@shihongxins/jsutils",
   "version": "0.0.4",
   "description": "Personal Javascript Utils Library.",
+  "keywords": [
+    "Javascript",
+    "Utils"
+  ],
+  "author": "shihongxins@163.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shihongxins/jsutils"
+  },
+  "license": "ISC",
   "main": "lib/bundle.cjs.js",
   "module": "lib/bundle.esm.js",
   "browser": "lib/bundle.browser.js",
   "types": "types/index.d.ts",
-  "config": {
-    "commitizen": {
-      "path": "cz-git"
-    }
-  },
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "prepare": "husky install",
     "format": "prettier ./src/ --write",
@@ -22,14 +24,24 @@
     "build:types": "tsc",
     "bulid": "rollup -c",
     "commit": "cz",
-    "release": "release-it"
+    "release": "release-it",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
-  "keywords": [
-    "Javascript",
-    "Utils"
+  "config": {
+    "commitizen": {
+      "path": "cz-git"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "lib",
+    "types",
+    "src"
   ],
-  "author": "shihongxins@163.com",
-  "license": "ISC",
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
     "@commitlint/config-conventional": "^17.4.4",
@@ -49,7 +61,9 @@
     "prettier": "^2.8.4",
     "release-it": "^15.8.0",
     "rollup": "^3.19.1",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "vitepress": "1.0.0-alpha.52",
+    "vue": "^3.2.47"
   },
   "dependencies": {
     "dayjs": "^1.11.7"
