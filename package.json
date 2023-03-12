@@ -1,7 +1,7 @@
 {
-  "name": "@stones/utils",
+  "name": "@stones/jsutils",
   "version": "0.0.1",
-  "description": "Stone's Personal Javascript Utils Library.",
+  "description": "Personal Javascript Utils Library.",
   "main": "lib/bundle.cjs.js",
   "module": "lib/bundle.esm.js",
   "browser": "lib/bundle.browser.js",
@@ -12,13 +12,13 @@
     }
   },
   "scripts": {
+    "prepare": "husky install",
     "format": "prettier ./src/ --write",
     "lint": "eslint ./src --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install",
-    "commit": "cz",
-    "bulid": "rollup -c",
     "build:types": "tsc",
+    "bulid": "rollup -c",
+    "commit": "cz",
     "release": "release-it"
   },
   "keywords": [
@@ -49,6 +49,9 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
+    "dayjs": "^1.11.7"
+  },
+  "peerDependencies": {
     "dayjs": "^1.11.7"
   }
 }
