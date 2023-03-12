@@ -23,9 +23,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
+          cache-dependency-path: './package-lock.json'
       # 安装依赖
       - name: Install dependencies 🔧
-        run: npm install --frozen-lockfile
+        run: npm install
       # 检查代码
       - name: Check code 🔍
         run: |
