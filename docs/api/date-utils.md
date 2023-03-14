@@ -8,6 +8,23 @@ layout: doc
 type allowDateType = Date | string | number;
 ```
 
+## parseDateOrTime() {#parseDateOrTime}
+
+Get time number from date or time especially "HH:mm:ss".
+
+- **type:** `function`
+
+  ```ts
+  function parseDateOrTime(datetime: allowDateType): number;
+  ```
+
+- **example**
+
+  ```ts
+  import { DateUtils } from "@shihongxins/utils";
+  console.log(DateUtils.parseDateOrTime("00:00:06"));
+  ```
+
 ## nativeFormat() {#nativeFormat}
 
 Datetime format with native API.

@@ -11,7 +11,7 @@ export declare function rgb2hex(color?: string, alpha?: number): void | string;
  * @param alpha 输出透明度
  * @returns
  */
-export declare function hex2rgb(color?: string, alpha?: number): void | string;
+export declare function hex2rgb(color?: string, alpha?: number, alphaFixed?: number): void | string;
 export declare const ColorUtils: {
     rgb2hex: typeof rgb2hex;
     hex2rgb: typeof hex2rgb;
