@@ -8,7 +8,7 @@ interface NonStandardFullscreenAPI extends Document {
   msRequestFullscreen?: (options: FullscreenOptions) => Promise<void>;
 
   webkitExitFullscreen?: () => Promise<void>;
-  mozExitFullScreen?: () => Promise<void>;
+  mozCancelFullScreen?: () => Promise<void>;
   msExitFullscreen?: () => Promise<void>;
 
   webkitFullscreenElement?: Element;
@@ -21,12 +21,16 @@ interface NonStandardFullscreenAPI extends Document {
 }
 
 const doc: NonStandardFullscreenAPI = document;
-const rootElem = document.documentElement || document.body;
+const rootElem = doc.documentElement || doc.body;
 const fullscreenEnabled =
   doc.fullscreenEnabled || doc.webkitFullscreenEnabled || doc.mozFullScreenEnabled || doc.msFullscreenEnabled;
 const requestFullscreen =
-  rootElem.requestFullscreen || doc.webkitRequestFullscreen || doc.mozRequestFullScreen || doc.msRequestFullscreen;
-const exitFullscreen = doc.exitFullscreen || doc.webkitExitFullscreen || doc.mozExitFullScreen || doc.msExitFullscreen;
+  rootElem.requestFullscreen ||
+  (rootElem as unknown as NonStandardFullscreenAPI).webkitRequestFullscreen ||
+  (rootElem as unknown as NonStandardFullscreenAPI).mozRequestFullScreen ||
+  (rootElem as unknown as NonStandardFullscreenAPI).msRequestFullscreen;
+const exitFullscreen =
+  doc.exitFullscreen || doc.webkitExitFullscreen || doc.mozCancelFullScreen || doc.msExitFullscreen;
 
 /**
  * 当前页面文档是否处于全屏模式
@@ -50,7 +54,7 @@ export function isDocumentInFullscreenMode(): boolean {
  * @param options 全屏选项
  * @returns
  */
-export function toggleElementFullscreen(target: Element, options: FullscreenOptions) {
+export function toggleElementFullscreen(target: Element, options?: FullscreenOptions) {
   return new Promise((resolve, reject) => {
     if (!fullscreenEnabled) {
       reject(new Error("This browser is not support fullscreen."));

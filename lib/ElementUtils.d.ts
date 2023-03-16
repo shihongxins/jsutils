@@ -8,7 +8,7 @@ export declare function isDocumentInFullscreenMode(): boolean;
  * @param options 全屏选项
  * @returns
  */
-export declare function toggleElementFullscreen(target: Element, options: FullscreenOptions): Promise<unknown>;
+export declare function toggleElementFullscreen(target: Element, options?: FullscreenOptions): Promise<unknown>;
 /**
  * 元素注册横向滚动事件，可注册为 Vue 指令
  * @param target - 目标元素
