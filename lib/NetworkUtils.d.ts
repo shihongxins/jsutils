@@ -1,7 +1,8 @@
-interface UserResponseData<T> extends Error {
+interface UserResponseData<T> {
     status?: number;
     statusText?: string;
     code?: number;
+    message?: string;
     data?: T;
     msg?: string;
 }
@@ -19,7 +20,7 @@ export declare function validateResponseCode(response: UserResponseData<any>, co
  * @param maxLen 限制最大长度
  * @returns
  */
-export declare function getResponseMessage(response: UserResponseData<any>, maxLen: undefined | number): string;
+export declare function getResponseMessage(response: UserResponseData<any>, maxLen?: undefined | number): string;
 export declare const NetworkUtils: {
     validateResponseCode: typeof validateResponseCode;
     getResponseMessage: typeof getResponseMessage;

@@ -1,7 +1,8 @@
-interface UserResponseData<T> extends Error {
+interface UserResponseData<T> {
   status?: number;
   statusText?: string;
   code?: number;
+  message?: string;
   data?: T;
   msg?: string;
 }
@@ -15,7 +16,7 @@ interface UserResponseData<T> extends Error {
  */
 export function validateResponseCode(
   response: UserResponseData<any>,
-  code: number | number[] = [],
+  code: number | number[] = [200],
   includeStatus = false
 ): boolean {
   return [NaN]
@@ -30,7 +31,7 @@ export function validateResponseCode(
  * @param maxLen 限制最大长度
  * @returns
  */
-export function getResponseMessage(response: UserResponseData<any>, maxLen: undefined | number): string {
+export function getResponseMessage(response: UserResponseData<any>, maxLen?: undefined | number): string {
   return String((response && (response.msg || response.statusText || response.message)) || response).slice(0, maxLen);
 }
 
