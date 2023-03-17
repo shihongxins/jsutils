@@ -4,7 +4,7 @@
  * @param source 源对象
  * @returns 合并后的目标对象
  */
-export declare function assignCommonProperty(target?: {}, source?: {}): {};
+export declare function assignCommonProperty(target: object, source: object, fromSourceStrictly?: undefined | boolean): object;
 export declare const ObjectUtils: {
     assignCommonProperty: typeof assignCommonProperty;
 };

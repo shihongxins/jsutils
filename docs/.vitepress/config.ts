@@ -28,6 +28,7 @@ export default defineConfig({
               { text: "ListLoop", link: "/api/listloop" },
               { text: "MathUtils", link: "/api/math-utils" },
               { text: "NetworkUtils", link: "/api/network-utils" },
+              { text: "ObjectUtils", link: "/api/object-utils" },
             ],
           },
         ],
