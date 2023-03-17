@@ -15,7 +15,7 @@ interface IE8Document extends Document {
  * @param cancelable 能否被取消
  * @returns
  */
-export const createCustomEvent = function (type = "", bubbles = true, cancelable = true): never | void | Event {
+export function createCustomEvent(type = "", bubbles = true, cancelable = true): never | void | Event {
   let event;
   if (!type.trim()) {
     throw new Error("Unknown custom event type.");
@@ -28,14 +28,14 @@ export const createCustomEvent = function (type = "", bubbles = true, cancelable
   }
   if (Event && typeof Event.prototype.initEvent === "function") {
     if (typeof Event.prototype.initEvent === "function") {
-      event = document.createEvent(type);
+      event = document.createEvent("Event");
       event.initEvent(type, bubbles, cancelable);
     } else {
       event = new Event(type, { bubbles, cancelable });
     }
   }
   return event;
-};
+}
 
 /**
  * 触发自定义事件

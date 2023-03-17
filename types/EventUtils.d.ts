@@ -14,7 +14,7 @@ interface IE8Document extends Document {
  * @param cancelable 能否被取消
  * @returns
  */
-export declare const createCustomEvent: (type?: string, bubbles?: boolean, cancelable?: boolean) => never | void | Event;
+export declare function createCustomEvent(type?: string, bubbles?: boolean, cancelable?: boolean): never | void | Event;
 /**
  * 触发自定义事件
  * @param event 目标事件
@@ -22,7 +22,7 @@ export declare const createCustomEvent: (type?: string, bubbles?: boolean, cance
  */
 export declare function dispatchCustomEvent(event: Event, target?: Window | IE8Document | Element): never | void;
 export declare const EventUtils: {
-    createCustomEvent: (type?: string, bubbles?: boolean, cancelable?: boolean) => never | void | Event;
+    createCustomEvent: typeof createCustomEvent;
     dispatchCustomEvent: typeof dispatchCustomEvent;
 };
 export {};

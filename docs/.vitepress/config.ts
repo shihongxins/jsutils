@@ -24,6 +24,7 @@ export default defineConfig({
               { text: "ColorUtils", link: "/api/color-utils" },
               { text: "DateUtils", link: "/api/date-utils" },
               { text: "ElementUtils", link: "/api/element-utils" },
+              { text: "EventUtils", link: "/api/event-utils" },
             ],
           },
         ],
