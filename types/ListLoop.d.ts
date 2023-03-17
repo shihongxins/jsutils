@@ -3,7 +3,8 @@ export declare class ListLoop<T> {
     count: number;
     index: number;
     constructor(list?: T[], count?: number, index?: number);
+    get total(): number;
     lastRound(): number;
     nextRound(): number;
-    currentRoundList(): T[];
+    get currentRoundList(): T[];
 }
