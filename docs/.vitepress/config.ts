@@ -26,6 +26,7 @@ export default defineConfig({
               { text: "ElementUtils", link: "/api/element-utils" },
               { text: "EventUtils", link: "/api/event-utils" },
               { text: "ListLoop", link: "/api/listloop" },
+              { text: "MathUtils", link: "/api/math-utils" },
             ],
           },
         ],
