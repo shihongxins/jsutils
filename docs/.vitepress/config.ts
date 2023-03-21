@@ -25,6 +25,7 @@ export default defineConfig({
               { text: "DateUtils", link: "/api/date-utils" },
               { text: "ElementUtils", link: "/api/element-utils" },
               { text: "EventUtils", link: "/api/event-utils" },
+              { text: "FileSystemUtils", link: "/api/filesystem-utils" },
               { text: "ListLoop", link: "/api/listloop" },
               { text: "MathUtils", link: "/api/math-utils" },
               { text: "NetworkUtils", link: "/api/network-utils" },

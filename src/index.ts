@@ -8,6 +8,7 @@ export {
   getElementStyleProp,
 } from "./ElementUtils";
 export { EventUtils, createCustomEvent, dispatchCustomEvent } from "./EventUtils";
+export { FileSystemUtils, showOpenFilePicker, showDirectoryPicker, downloadFile } from "./FileSystemUtils";
 export { ListLoop } from "./ListLoop";
 export { MathUtils, isNumberInRange } from "./MathUtils";
 export { NetworkUtils, validateResponseCode, getResponseMessage } from "./NetworkUtils";
