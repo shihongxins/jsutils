@@ -28,7 +28,7 @@ describe("DateUtils", () => {
     );
     expect(
       DateUtils.durationFormat(dayjs().toDate(), dayjs().add(1, "month").toDate(), "d 天 HH 小时 mm 分钟 ss 秒")
-    ).toBe("31 天 0 小时 0 分钟 0 秒");
+    ).toBe(`${dayjs().daysInMonth()} 天 0 小时 0 分钟 0 秒`);
     expect(
       DateUtils.durationFormat(
         dayjs().add(1, "hour").toDate(),

@@ -19,10 +19,11 @@ export function validateResponseCode(
   code: number | number[] = [200],
   includeStatus = false
 ): boolean {
-  return [NaN]
-    .concat(code)
-    .filter((c) => !isNaN(c))
-    .includes(response.code || (includeStatus && response.status) || NaN);
+  return (
+    [NaN].concat(code).filter((c) => {
+      return !isNaN(c) && (c === response.code || (includeStatus && c === response.status));
+    }).length > 0
+  );
 }
 
 /**
