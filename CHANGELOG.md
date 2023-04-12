@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/shihongxins/jsutils/compare/1.1.0...1.1.1) (2023-04-12)
+
+### Bug Fixes
+
+- **NetworkUtils:** fix the bug that error ignored 0 when validate response code ([78d232b](https://github.com/shihongxins/jsutils/commit/78d232bdd73a159fa10627f7148fd6d93ffac656))
+
 # [1.1.0](https://github.com/shihongxins/jsutils/compare/1.0.2...1.1.0) (2023-03-21)
 
 ### Features
