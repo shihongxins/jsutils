@@ -1,1 +1,0 @@
-import{_ as s,c as a,o as n,N as l}from"./chunks/framework.d7881f9a.js";const A=JSON.parse('{"title":"DateUtils API","description":"","frontmatter":{"layout":"doc"},"headers":[],"relativePath":"api/date-utils.md"}'),o={name:"api/date-utils.md"},p=l("",14),t=[p];function e(r,c,D,y,F,i){return n(),a("div",null,t)}const d=s(o,[["render",e]]);export{A as __pageData,d as default};

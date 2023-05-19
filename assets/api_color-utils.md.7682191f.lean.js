@@ -1,1 +1,0 @@
-import{_ as s,c as a,o,N as l}from"./chunks/framework.d7881f9a.js";const A=JSON.parse('{"title":"ColorUtils API","description":"","frontmatter":{"layout":"doc"},"headers":[],"relativePath":"api/color-utils.md"}'),n={name:"api/color-utils.md"},p=l("",7),t=[p];function e(r,c,i,D,y,F){return o(),a("div",null,t)}const h=s(n,[["render",e]]);export{A as __pageData,h as default};
