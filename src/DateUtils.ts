@@ -10,8 +10,17 @@ type allowDateType = Date | string | number;
 export function parseDateOrTime(datetime: allowDateType): number {
   const reg_time = /^\d{2}:\d{2}.+$/m;
   let d = NaN;
+  let needTimeOffset = false;
+  const timeOffset = new Date().getTimezoneOffset() * 60 * 1000;
   if (typeof datetime === "string") {
+    if (/^\d+-\d+-\d+$/.test(datetime)) {
+      needTimeOffset = true;
+      datetime = datetime.replace(/-/g, "/");
+    }
     d = Date.parse(datetime);
+    if (needTimeOffset) {
+      d -= timeOffset;
+    }
     // HH:mm:ss
     if (!d && reg_time.test(datetime)) {
       const now = new Date();
@@ -80,11 +89,21 @@ export function durationFormat(
 
   return format.replace(/(d)|(H{2})|(m{2})|(s{3})|(s{2})/gm, function (match, fday, fhour, fmin, fmsec, fsec) {
     let tem = "";
-    if (fday) return (tem += days);
-    if (fhour) return (tem += hours);
-    if (fmin) return (tem += mins);
-    if (fmsec) return (tem += msecs);
-    if (fsec) return (tem += secs);
+    if (fday) {
+      tem += days;
+    }
+    if (fhour) {
+      tem += hours;
+    }
+    if (fmin) {
+      tem += mins;
+    }
+    if (fmsec) {
+      tem += msecs;
+    }
+    if (fsec) {
+      tem += secs;
+    }
     if (pad0 && (fhour || fmin || fsec)) {
       tem = ("00" + tem).slice(-2);
     }
