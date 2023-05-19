@@ -1,3 +1,9 @@
+## [1.1.2](https://github.com/shihongxins/jsutils/compare/1.1.1...1.1.2) (2023-05-19)
+
+### Bug Fixes
+
+- **DateUtils:** fix some bug ([f5b498c](https://github.com/shihongxins/jsutils/commit/f5b498c097bd6d2bf3758b6436cf0503971e89fa))
+
 ## [1.1.1](https://github.com/shihongxins/jsutils/compare/1.1.0...1.1.1) (2023-04-12)
 
 ### Bug Fixes
