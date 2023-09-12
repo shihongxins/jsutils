@@ -25,7 +25,10 @@ function genInputElemToBody(attrs: object): HTMLInputElement {
   return input;
 }
 
-type MockFileSystemFileHandle = FileSystemFileHandle;
+type MockFileSystemFileHandle = FileSystemFileHandle & {
+  isSameEntry?(other: FileSystemFileHandle): Promise<boolean>;
+  createWritable?(options?: { keepExistingData: boolean } | undefined): Promise<any>;
+};
 
 function genMockFileSystemFileHandle(file: File): MockFileSystemFileHandle {
   return {
@@ -37,6 +40,10 @@ function genMockFileSystemFileHandle(file: File): MockFileSystemFileHandle {
     isSameEntry() {
       console.warn("Can't implement");
       return Promise.reject(false);
+    },
+    createWritable() {
+      console.warn("Can't implement");
+      return Promise.reject(new Error("Not implemented"));
     },
   };
 }
