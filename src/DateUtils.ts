@@ -48,7 +48,7 @@ export function nativeFormat(datetime: allowDateType = new Date(), format = "YYY
       if (fmin) return ("00" + _d.getMinutes().toString()).slice(-2);
       if (fmsec) return _d.getMilliseconds().toString();
       if (fsec) return ("00" + _d.getSeconds().toString()).slice(-2);
-      return "";
+      return match;
     }
   );
 }
@@ -60,7 +60,10 @@ export function nativeFormat(datetime: allowDateType = new Date(), format = "YYY
  * @returns
  */
 export function dayjsFormat(datetime: allowDateType = new Date(), format = "YYYY-MM-DD HH:mm:ss"): string {
-  return dayjs(parseDateOrTime(datetime) || "").format(format);
+  console.warn(
+    'this function dependence the library "dayjs"(see https://day.js.org/) otherwise this will call "nativeFormat()" function.'
+  );
+  return dayjs ? dayjs(parseDateOrTime(datetime) || "").format(format) : nativeFormat(datetime, format);
 }
 
 /**
