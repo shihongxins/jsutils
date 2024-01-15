@@ -123,7 +123,7 @@ type MockFileSystemFileHandle = FileSystemFileHandle & {
         keepExistingData: boolean;
     } | undefined): Promise<any>;
 };
-interface MockFileSystemDirectoryHandle extends FileSystemDirectoryHandle {
+interface MockFileSystemDirectoryHandle extends Pick<FileSystemDirectoryHandle, "kind" | "name" | "getDirectoryHandle" | "getFileHandle"> {
     subFolders: string[];
     subFiles: string[];
     [key: string]: any;
@@ -191,9 +191,9 @@ type showDirectoryPickerFn = (options: DirectoryPickerOptions) => Promise<MockFi
 declare const showDirectoryPicker: showDirectoryPickerFn;
 /**
  * 下载文件
- * @param {string | Blob} target - 目标链接或文件
- * @param {string} filename - 自定义文件名
- * @param {boolean} newWnd - 使用新窗口打开的方式下载
+ * @param {string | Blob | File} target - 目标链接或文件
+ * @param {string?} filename - 自定义文件名
+ * @param {boolean?} newWnd - 使用新窗口打开的方式下载
  */
 declare function downloadFile(target: string | Blob, filename?: string, newWnd?: boolean): void | never;
 declare const FileSystemUtils: {

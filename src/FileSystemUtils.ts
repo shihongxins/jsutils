@@ -3,8 +3,19 @@
 const isSecurity = window === top && window.location.protocol === "https:";
 
 function genInputElemToBody(attrs: object): HTMLInputElement {
-  const input = document.createElement("input");
+  let input = document.body.querySelector("input#file_system-picker[type=file]") as HTMLInputElement;
+  input = input || document.createElement("input");
+  if (input.files?.length) {
+    try {
+      input.type = "text";
+      input.value = "";
+    } catch (error) {
+      console.warn(error);
+      input.outerHTML = String(input.outerHTML);
+    }
+  }
   input.type = "file";
+  input.id = "file_system-picker";
   // see https://stackoverflow.com/questions/47664777/javascript-file-input-onchange-not-working-ios-safari-only
   input.style.cssText = `position: absolute; top: 0; left: 0; z-index: -9999; width: 1px; height: 1px; opacity: 0;`;
   for (const key in attrs) {
@@ -21,7 +32,9 @@ function genInputElemToBody(attrs: object): HTMLInputElement {
       }
     }
   }
-  document.body.append(input);
+  if (!document.body.querySelector("input#file_system-picker[type=file]")) {
+    document.body.append(input);
+  }
   return input;
 }
 
@@ -48,7 +61,8 @@ function genMockFileSystemFileHandle(file: File): MockFileSystemFileHandle {
   };
 }
 
-interface MockFileSystemDirectoryHandle extends FileSystemDirectoryHandle {
+interface MockFileSystemDirectoryHandle
+  extends Pick<FileSystemDirectoryHandle, "kind" | "name" | "getDirectoryHandle" | "getFileHandle"> {
   subFolders: string[];
   subFiles: string[];
   [key: string]: any;
@@ -77,18 +91,6 @@ function genMockFileSystemDirectoryHandle(directory: MockFileSystemDirectoryHand
           reject(new Error(`Not found '${name}'`));
         }
       });
-    },
-    isSameEntry() {
-      console.warn("Can't implement");
-      return Promise.reject(false);
-    },
-    removeEntry() {
-      console.warn("Can't implement");
-      return Promise.reject(false);
-    },
-    resolve() {
-      console.warn("Can't implement");
-      return Promise.reject(false);
     },
   };
 }
@@ -193,8 +195,11 @@ export const showOpenFilePicker: showOpenFilePickFn = (options?: OpenFilePickerO
                 const exts = accept[mimetype]?.length ? accept[mimetype].join(", ").replace(trimReg, "") : "";
                 return exts || mimetype;
               }
+              return "";
             }
+            return "";
           })
+          .filter((exts) => exts)
           .join(", ");
         inputAccept = inputAccept.replace(trimReg, "");
         if (inputAccept) {
@@ -251,7 +256,7 @@ export const showDirectoryPicker: showDirectoryPickerFn = (options?: DirectoryPi
   return new Promise((reslove, reject) => {
     const inputAttrs = {
       webkitdirectory: true,
-      handlechange: () => {
+      onchange: () => {
         if (!input.files?.length) {
           reject(new Error("No directory selected"));
         } else {
@@ -282,9 +287,9 @@ if (!nativeDir) {
 
 /**
  * 下载文件
- * @param {string | Blob} target - 目标链接或文件
- * @param {string} filename - 自定义文件名
- * @param {boolean} newWnd - 使用新窗口打开的方式下载
+ * @param {string | Blob | File} target - 目标链接或文件
+ * @param {string?} filename - 自定义文件名
+ * @param {boolean?} newWnd - 使用新窗口打开的方式下载
  */
 export function downloadFile(target: string | Blob, filename = "", newWnd = false): void | never {
   if (!target) {
