@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/shihongxins/jsutils/compare/1.1.3...1.1.4) (2024-01-15)
+
+### Bug Fixes
+
+- **FileSystemUtils:** fix some bugs ([19f7161](https://github.com/shihongxins/jsutils/commit/19f71616101e8cd49b407702894dc66868bc48f8))
+- **ObjectUtils:** fix the bug when call assignCommonProperty function ([80d8564](https://github.com/shihongxins/jsutils/commit/80d85645bbf51c367eb77f7ba9a4150e3e3e99bb))
+
 ## [1.1.3](https://github.com/shihongxins/jsutils/compare/1.1.2...1.1.3) (2024-01-15)
 
 ### Bug Fixes
