@@ -10,21 +10,31 @@ type allowDateType = Date | string | number;
 export function parseDateOrTime(datetime: allowDateType): number {
   const reg_time = /^\d{2}:\d{2}.+$/m;
   let d = NaN;
-  let needTimeOffset = false;
-  const timeOffset = new Date().getTimezoneOffset() * 60 * 1000;
   if (typeof datetime === "string") {
-    if (/^\d+-\d+-\d+$/.test(datetime)) {
-      needTimeOffset = true;
-      datetime = datetime.replace(/-/g, "/");
+    let offset = 0;
+    // replace '+08:00' with ' ' in only date
+    if (/^[^:]+(\+[\d:]+)$/.test(datetime)) {
+      datetime = datetime.replace(/(\+[\d:]+)$/, " ");
     }
+    // fix the loose timezone when transform ‘2024-01-01’ to '2024/01/01'
+    if (/^\d{4}-\d{2}-\d{2}$/.test(datetime)) {
+      offset = Math.abs(new Date().getTimezoneOffset()) * 60 * 1000;
+    }
+    // ' ' can replace 'T' without effect
+    datetime = datetime.replace("T", " ");
+    // fix in iOS
+    datetime = datetime.replace(/-/g, "/");
+
     d = Date.parse(datetime);
-    if (needTimeOffset) {
-      d -= timeOffset;
+
+    if (d && offset) {
+      d += offset;
     }
+
     // HH:mm:ss
     if (!d && reg_time.test(datetime)) {
       const now = new Date();
-      d = Date.parse(`${nativeFormat(now, `YYYY-MM-DDT${datetime}.sss`)}`);
+      d = Date.parse(`${nativeFormat(now, `YYYY-MM-DD ${datetime}`)}`);
     }
   }
   return Date.parse(new Date(d || datetime).toISOString());
