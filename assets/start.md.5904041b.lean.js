@@ -1,1 +1,0 @@
-import{_ as s,o as a,c as l,O as n}from"./chunks/framework.eabfc4e7.js";const A=JSON.parse('{"title":"Installation","description":"","frontmatter":{"outline":"deep"},"headers":[],"relativePath":"start.md","filePath":"start.md"}'),o={name:"start.md"},p=n("",4),t=[p];function e(c,r,i,D,y,F){return a(),l("div",null,t)}const d=s(o,[["render",e]]);export{A as __pageData,d as default};
