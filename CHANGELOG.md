@@ -1,3 +1,11 @@
+## [1.1.3](https://github.com/shihongxins/jsutils/compare/1.1.2...1.1.3) (2024-01-15)
+
+### Bug Fixes
+
+- **DateUtils:** change "dayjs" library to peerDependencies ([38fc0aa](https://github.com/shihongxins/jsutils/commit/38fc0aaaef750b5513fd5ee46f5e94a79a1cea3d))
+- **DateUtils:** fix the bug in iOS when use parseDateOrTime function ([69c070c](https://github.com/shihongxins/jsutils/commit/69c070c17dc36e222508e6d6ef4619554231e7ad))
+- **FileSystemUtils:** fix type error of MockFileSystemFileHandle ([9b3b2aa](https://github.com/shihongxins/jsutils/commit/9b3b2aa11584c5c9f19be04069a007f43e154c5f))
+
 ## [1.1.2](https://github.com/shihongxins/jsutils/compare/1.1.1...1.1.2) (2023-05-19)
 
 ### Bug Fixes
