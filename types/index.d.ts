@@ -257,10 +257,10 @@ declare const NetworkUtils: {
 /**
  * 合并对象共有的属性
  * @param target 目标对象
- * @param source 源对象
+ * @param sources 源对象
  * @returns 合并后的目标对象
  */
-declare function assignCommonProperty(target: object, source: object, fromSourceStrictly?: undefined | boolean): object;
+declare function assignCommonProperty(target: object, ...sources: (object | null | undefined)[]): object;
 declare const ObjectUtils: {
     assignCommonProperty: typeof assignCommonProperty;
 };

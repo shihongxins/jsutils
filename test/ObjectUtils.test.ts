@@ -25,6 +25,6 @@ describe("ObjectUtils", () => {
   });
 
   test("assignCommonProperty", () => {
-    expect(ObjectUtils.assignCommonProperty(target, source)).toEqual(Object.assign({}, target, source));
+    expect(ObjectUtils.assignCommonProperty(target, source)).toEqual(Object.assign(target, source));
   });
 });

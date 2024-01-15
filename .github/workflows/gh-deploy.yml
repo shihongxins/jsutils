@@ -31,7 +31,7 @@ jobs:
           cache: pnpm
       # 安装依赖
       - name: Install dependencies 🔧
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
       # 检查代码
       - name: Check code 🔍
         run: |

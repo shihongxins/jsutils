@@ -11,7 +11,7 @@ Assign the common property between 'target' and 'source'.
 - **type:** `function`
 
   ```ts
-  function assignCommonProperty(target: object, source: object, fromSourceStrictly?: undefined | boolean): object;
+  function assignCommonProperty(target: object, ...sources: (object | null | undefined)[]): object;
   ```
 
 - **example**

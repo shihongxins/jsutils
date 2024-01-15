@@ -1,20 +1,26 @@
 /**
  * 合并对象共有的属性
  * @param target 目标对象
- * @param source 源对象
+ * @param sources 源对象
  * @returns 合并后的目标对象
  */
-export function assignCommonProperty(target: object, source: object, fromSourceStrictly: undefined | boolean = true) {
-  if (!(target instanceof Object && source instanceof Object)) {
-    throw new Error(`arguments must be object.`);
+export function assignCommonProperty(target: object, ...sources: (object | null | undefined)[]) {
+  if (!(target && target instanceof Object)) {
+    throw new TypeError(`Cannot convert undefined or null to object`);
   }
+  const sourceList = ([] as object[])
+    .concat(sources)
+    .filter((sourceItem) => sourceItem !== null && sourceItem !== undefined);
   for (const key in target) {
-    if (
-      Object.prototype.hasOwnProperty.call(target, key) &&
-      (!fromSourceStrictly || Object.prototype.hasOwnProperty.call(source, key))
-    ) {
-      (target as any)[key] = (source as any)[key];
-    }
+    sourceList.forEach((sourceItem) => {
+      if (
+        Object.prototype.hasOwnProperty.call(target, key) &&
+        sourceItem &&
+        Object.prototype.hasOwnProperty.call(sourceItem, key)
+      ) {
+        (target as any)[key] = (sourceItem as any)[key];
+      }
+    });
   }
   return target;
 }
