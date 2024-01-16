@@ -44,7 +44,7 @@ Datetime format with native API.
 
 ## dayjsFormat() {#dayjsFormat}
 
-Convert the color formatting from hex to rgb.
+The format function of [**dayjs**](https://day.js.org/en/).
 
 - **type:** `function`
 

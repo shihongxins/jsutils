@@ -13,3 +13,4 @@ export { ListLoop } from "./ListLoop";
 export { MathUtils, isNumberInRange } from "./MathUtils";
 export { NetworkUtils, validateResponseCode, getResponseMessage } from "./NetworkUtils";
 export { ObjectUtils, assignCommonProperty } from "./ObjectUtils";
+export * as StringUtils from "./StringUtils";

@@ -265,4 +265,84 @@ declare const ObjectUtils: {
     assignCommonProperty: typeof assignCommonProperty;
 };
 
-export { ColorUtils, DateUtils, ElementUtils, EventUtils, FileSystemUtils, ListLoop, MathUtils, NetworkUtils, ObjectUtils, assignCommonProperty, createCustomEvent, dayjsFormat, dispatchCustomEvent, downloadFile, durationFormat, getElementStyleProp, getResponseMessage, hex2rgb, isDocumentInFullscreenMode, isNumberInRange, listenElementHorizontalScrolling, nativeFormat, rgb2hex, showDirectoryPicker, showOpenFilePicker, toggleElementFullscreen, validateResponseCode };
+interface PasswordStrengthRules {
+    minNumber?: number;
+    minLowerCase?: number;
+    minUpperCase?: number;
+    minSpecialChar?: number;
+    minLength?: number;
+    maxLength?: number;
+    maxSequencingSubStringLength?: number;
+    maxContinousRepeatedCharsCount?: number;
+    allowedSpecialChars?: string | Array<string>;
+    pattern?: string | RegExp;
+}
+type PasswordStrengthCheckItemResult = -1 | 0 | 1;
+type PasswordStrengthCheckItem = {
+    [key in keyof PasswordStrengthRules]: PasswordStrengthCheckItemResult;
+};
+interface PasswordStrengthResult {
+    checked: number;
+    passed: number;
+    failed: number;
+    detail: {
+        password: string;
+        internalPassword: string;
+        rules?: PasswordStrengthRules;
+        internalRules: PasswordStrengthRules;
+        checkItems: PasswordStrengthCheckItem;
+    };
+}
+/**
+ * @description 根据范围获取 ASII 字符数组
+ * @param start
+ * @param end
+ * @default (33, 33) => ['!']
+ * @returns
+ */
+declare function getASCIICharsInRange(start?: number, end?: number): string[];
+/**
+ * @description 是否是顺续规则字符串
+ * @param string
+ * @param step
+ * @default ("", 1) => true
+ * @returns
+ */
+declare function isSequencingString(string?: string, step?: number): boolean;
+/**
+ * @description 是否有顺续规则字符串
+ * @todo TODO: 这里算法有问题，应使用其他算法
+ * @param string
+ * @param length
+ * @default ("", 2) => false
+ * @returns
+ */
+declare function hasSequencingSubString(string?: string, length?: number): boolean;
+/**
+ * 是否有连续重复的字符串
+ * @param string 被检测字符串
+ * @param length 重复次数
+ * @default ("", 2) => false
+ * @returns
+ */
+declare function hasContinousRepeatedChars(string?: string, repeat?: number): boolean;
+/**
+ * @description 密码强度校验
+ * @notice 在规则和结果中，falsy 值（ 0, undefined, null, false, '' ）等表示不做/未做检查； -1 表示检查失败； 1 表示检查通过；
+ * @author shihongxins
+ * @param password 密码
+ * @param rules 校验规则
+ * @returns 校验结果
+ */
+declare function passwordStrengthInspector(password: string, rules?: PasswordStrengthRules): PasswordStrengthResult;
+
+declare const StringUtils_d_getASCIICharsInRange: typeof getASCIICharsInRange;
+declare const StringUtils_d_hasContinousRepeatedChars: typeof hasContinousRepeatedChars;
+declare const StringUtils_d_hasSequencingSubString: typeof hasSequencingSubString;
+declare const StringUtils_d_isSequencingString: typeof isSequencingString;
+declare const StringUtils_d_passwordStrengthInspector: typeof passwordStrengthInspector;
+declare namespace StringUtils_d {
+  export { StringUtils_d_getASCIICharsInRange as getASCIICharsInRange, StringUtils_d_hasContinousRepeatedChars as hasContinousRepeatedChars, StringUtils_d_hasSequencingSubString as hasSequencingSubString, StringUtils_d_isSequencingString as isSequencingString, StringUtils_d_passwordStrengthInspector as passwordStrengthInspector };
+}
+
+export { ColorUtils, DateUtils, ElementUtils, EventUtils, FileSystemUtils, ListLoop, MathUtils, NetworkUtils, ObjectUtils, StringUtils_d as StringUtils, assignCommonProperty, createCustomEvent, dayjsFormat, dispatchCustomEvent, downloadFile, durationFormat, getElementStyleProp, getResponseMessage, hex2rgb, isDocumentInFullscreenMode, isNumberInRange, listenElementHorizontalScrolling, nativeFormat, rgb2hex, showDirectoryPicker, showOpenFilePicker, toggleElementFullscreen, validateResponseCode };
