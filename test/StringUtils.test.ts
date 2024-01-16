@@ -1,4 +1,4 @@
-import * as StringUtils from "../src/StringUtils";
+import StringUtils from "../src/StringUtils";
 
 describe("StringUtils", () => {
   test("getASCIICharsInRange", () => {

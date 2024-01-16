@@ -13,4 +13,11 @@ export { ListLoop } from "./ListLoop";
 export { MathUtils, isNumberInRange } from "./MathUtils";
 export { NetworkUtils, validateResponseCode, getResponseMessage } from "./NetworkUtils";
 export { ObjectUtils, assignCommonProperty } from "./ObjectUtils";
-export * as StringUtils from "./StringUtils";
+export {
+  StringUtils,
+  getASCIICharsInRange,
+  hasContinousRepeatedChars,
+  hasSequencingSubString,
+  isSequencingString,
+  passwordStrengthInspector,
+} from "./StringUtils";

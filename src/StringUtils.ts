@@ -45,47 +45,6 @@ export function getASCIICharsInRange(start = 33, end = 0) {
 }
 
 /**
- * @description 是否是顺续规则字符串
- * @param string
- * @param step
- * @default ("", 1) => true
- * @returns
- */
-export function isSequencingString(string = "", step = 1) {
-  const chars = string.split("");
-  return chars.every((char, i) => {
-    if (i === chars.length - 1) return true;
-    const charCode = char.charCodeAt(0);
-    const nextChar = chars[i + 1];
-    const nextCharCode = nextChar.charCodeAt(0);
-    return charCode + step === nextCharCode;
-  });
-}
-
-/**
- * @description 是否有顺续规则字符串
- * @todo TODO: 这里算法有问题，应使用其他算法
- * @param string
- * @param length
- * @default ("", 2) => false
- * @returns
- */
-export function hasSequencingSubString(string = "", length = 2) {
-  let l = Math.max(Math.floor(length) || 2, 2);
-  if (l >= string.length) l = string.length;
-  const sequenceChars = new RegExp(
-    `([0-9]{${l},})|([a-z]{${l},})|([A-Z]{${l},})([0-9]{${l},})|([a-z]{${l},})|([A-Z]{${l},})`,
-    "gm"
-  );
-  const matches = string.matchAll(sequenceChars);
-  for (const match of matches) {
-    if (isSequencingString(match[0], 1)) return true;
-    if (isSequencingString(match[0], -1)) return true;
-  }
-  return false;
-}
-
-/**
  * 是否有连续重复的字符串
  * @param string 被检测字符串
  * @param length 重复次数
@@ -99,6 +58,48 @@ export function hasContinousRepeatedChars(string = "", repeat = 2) {
   if (r < 2) r = 2;
   const sameChars = new RegExp(`(.)\\1{${r - 1},}`, "gm");
   return !!s.match(sameChars);
+}
+
+/**
+ * @description 是否有顺续规则字符串
+ * @todo TODO: 这里算法有问题，应使用其他算法
+ * @param string
+ * @param length
+ * @default ("", 2) => false
+ * @returns
+ */
+export function hasSequencingSubString(string = "", length = 2) {
+  let l = Math.max(Math.floor(length) || 2, 2);
+  if (l >= string.length) l = string.length;
+  if (l < 2) return false;
+  const sequenceChars = new RegExp(`([0-9]{${l},})|([a-z]{${l},})|([A-Z]{${l},})`, "gm");
+  const matches = string.matchAll(sequenceChars);
+  for (const match of matches) {
+    if (isSequencingString(match[0], 1)) return true;
+    if (isSequencingString(match[0], -1)) return true;
+  }
+  return false;
+}
+
+/**
+ * @description 是否是顺续规则字符串
+ * @param string
+ * @param step
+ * @default ("", 1) => true
+ * @returns
+ */
+export function isSequencingString(string = "", step = 1) {
+  const chars = string.split("");
+  return (
+    chars.length > 1 &&
+    chars.every((char, i) => {
+      if (i === chars.length - 1) return true;
+      const charCode = char.charCodeAt(0);
+      const nextChar = chars[i + 1];
+      const nextCharCode = nextChar.charCodeAt(0);
+      return charCode + step === nextCharCode;
+    })
+  );
 }
 
 /**
@@ -120,7 +121,7 @@ export function passwordStrengthInspector(password: string, rules?: PasswordStre
       minSpecialChar: 0,
       minLength: 4,
       maxLength: 0,
-      maxSequencingSubStringLength: 3,
+      maxSequencingSubStringLength: 2,
       maxContinousRepeatedCharsCount: 2,
       allowedSpecialChars: "",
     },
@@ -134,7 +135,7 @@ export function passwordStrengthInspector(password: string, rules?: PasswordStre
   let minSpecialChar = Math.max(Math.floor(_rules.minSpecialChar) || 0, 0);
   let minLength = Math.max(Math.floor(_rules.minLength) || 4, 4);
   let maxLength = Math.max(Math.floor(_rules.maxLength) || 0, 0);
-  const maxSequencingSubStringLength = Math.max(Math.floor(_rules.maxSequencingSubStringLength) || 3, 3);
+  const maxSequencingSubStringLength = Math.max(Math.floor(_rules.maxSequencingSubStringLength) || 2, 2);
   const maxContinousRepeatedCharsCount = Math.max(Math.floor(_rules.maxContinousRepeatedCharsCount) || 2, 2);
   if (!(minUpperCase || minLowerCase || minNumber || minSpecialChar)) {
     minUpperCase = 1;
@@ -210,12 +211,12 @@ export function passwordStrengthInspector(password: string, rules?: PasswordStre
   if (maxLength > 0) {
     checkItems.maxLength = internalPassword.length > maxLength ? -1 : 1;
   }
-  if (maxSequencingSubStringLength > 0) {
+  if (maxSequencingSubStringLength > 0 && maxSequencingSubStringLength <= internalPassword.length) {
     checkItems.maxSequencingSubStringLength = hasSequencingSubString(internalPassword, maxSequencingSubStringLength)
       ? -1
       : 1;
   }
-  if (maxContinousRepeatedCharsCount > 0) {
+  if (maxContinousRepeatedCharsCount > 0 && maxContinousRepeatedCharsCount <= internalPassword.length) {
     checkItems.maxContinousRepeatedCharsCount = hasContinousRepeatedChars(
       internalPassword,
       maxContinousRepeatedCharsCount
@@ -264,3 +265,13 @@ export function passwordStrengthInspector(password: string, rules?: PasswordStre
     },
   };
 }
+
+export const StringUtils = {
+  getASCIICharsInRange,
+  hasContinousRepeatedChars,
+  hasSequencingSubString,
+  isSequencingString,
+  passwordStrengthInspector,
+};
+
+export default StringUtils;
