@@ -1,3 +1,9 @@
+## [1.2.1](https://github.com/shihongxins/jsutils/compare/1.2.0...1.2.1) (2024-01-16)
+
+### Bug Fixes
+
+- **StringUtils:** fix bugs in StringUtils ([1eb0f8c](https://github.com/shihongxins/jsutils/commit/1eb0f8cb2f0b5656c05c0478cdfc5a69e11f90b9))
+
 # [1.2.0](https://github.com/shihongxins/jsutils/compare/1.1.4...1.2.0) (2024-01-16)
 
 ### Features
