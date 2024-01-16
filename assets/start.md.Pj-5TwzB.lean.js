@@ -1,1 +1,0 @@
-import{_ as s,c as i,o as a,V as t}from"./chunks/framework.IHsRVw_D.js";const c=JSON.parse('{"title":"Installation","description":"","frontmatter":{"outline":"deep"},"headers":[],"relativePath":"start.md","filePath":"start.md"}'),l={name:"start.md"},n=t("",4),h=[n];function e(p,k,d,r,o,E){return a(),i("div",null,h)}const u=s(l,[["render",e]]);export{c as __pageData,u as default};
