@@ -1,3 +1,9 @@
+# [1.2.0](https://github.com/shihongxins/jsutils/compare/1.1.4...1.2.0) (2024-01-16)
+
+### Features
+
+- **StringUtils:** add StringUtils that includes passwordStrengthInspector function and more ([93c762e](https://github.com/shihongxins/jsutils/commit/93c762e345de6a48defee2aed163b90783f49fbe))
+
 ## [1.1.4](https://github.com/shihongxins/jsutils/compare/1.1.3...1.1.4) (2024-01-15)
 
 ### Bug Fixes
